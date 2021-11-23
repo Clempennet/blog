@@ -1,13 +1,7 @@
 <?php
 
-require 'inc/entete.php';
-require 'inc/db.php';
-
-#Récupération des données de l'entierté des articles publiés
-$req_articles = $connect->query("SELECT article_id, article_titre, article_contenu FROM articles WHERE article_etat = 1 ORDER BY article_date DESC;");
-
-#Combien d'articles sont publiés ?
-$req_nb_articles = ($connect->query("SELECT count(*) AS 'nb' FROM articles WHERE article_etat = 1"))->fetch_object();
+require_once "entete.php";
+use App\inc\Database;
 
 ?>
 

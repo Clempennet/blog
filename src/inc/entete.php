@@ -1,3 +1,5 @@
+<?php namespace App\inc;?>
+
 <!DOCTYPE html>
 <html lang="en">
 

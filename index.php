@@ -1,11 +1,13 @@
 <?php
 
-require 'inc/entete.php';
-require 'inc/db.php';
+require 'vendor/autoload.php';
 
-#Récupération des données des 3 derniers articles seulement
-$req_3_derniers_articles = $connect->query("SELECT article_id, article_titre FROM articles WHERE article_etat = 1 ORDER BY article_date DESC LIMIT 3;");
+use App\repository\ArticleRepository;
 
+require 'src/inc/entete.php';
+
+$m = new ArticleRepository();
+var_dump($m->getNumberArticles());
 ?>
 
 <h1>Découvez un blog comme vous n'en avez jamais vu...</h1>

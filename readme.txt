@@ -19,4 +19,4 @@ Je te conseille 2 points d'amélioration que tu pourras faire toute seule (compm
 
 Tu peux t'amuser à rajouter des articles, à les modifier et à les supprimer.
 
-Je t'aime très fort <3
+Je t'aime très fort <3 <3
