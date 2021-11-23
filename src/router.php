@@ -11,14 +11,14 @@ class Router
         $route = $_GET['route'] ?? null;
         $action = $_GET['action'] ?? null;
 
-        if (isset($_GET['route'])) {
-            if ($_GET['route'] === "post" && isset($_GET['action'])) {
-                $postController = new ArticleController();
+        if (isset($route)) {
+            if ($route === "article" && isset($action) && isset($_GET['id'])) {
+                $articleController = new ArticleController();
 
                 if ($_GET['action'] === 'read') {
-                    return $postController->read();
+                    return $articleController->read($_GET['id']);
                 } else if ($_GET['action'] == "create") {
-                    return $postController->create();
+                    return $articleController->create();
                 }
             }
         }
@@ -29,7 +29,7 @@ class Router
             $action = $_GET['action'];
 
             if ('post' === $action) {
-                return (new ArticleController())->read();
+                return (new ArticleController())->read($_GET['id']);
             } elseif ('contact' === $action) {
                 var_dump('contact');
             }

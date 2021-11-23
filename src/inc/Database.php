@@ -33,9 +33,11 @@ abstract class Database
     protected function createQuery(string $sql, array $parameters = [])
     {
         if (empty($parameters)) {
-            $result = $this->checkConnection()->prepare($sql);
+            $result = $this->checkConnection()->query($sql);
         }
-        $result->setFetchMode(\PDO::FETCH_CLASS, static::class);
+
+        $result = $this->checkConnection()->prepare($sql);
+        //$result->setFetchMode(\PDO::FETCH_CLASS, static::class);
         $result->execute($parameters);
 
         return $result;

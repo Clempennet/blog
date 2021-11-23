@@ -1,4 +1,4 @@
-Coucou mon doud, 
+Coucou mon doudou, 
 
 Dans ce dossier tu trouveras différents fichers :
 - article -> c'est la page d'un article en particulier

@@ -2,13 +2,14 @@
 
 require 'vendor/autoload.php';
 
-use App\model\ArticleModel;
 use App\repository\ArticleRepository;
+use App\Router;
 
 require 'src/inc/entete.php';
 
 $m = new ArticleRepository();
-
+$route = new Router();
+$route->run();
 ?>
 
 <h1>Découvez un blog comme vous n'en avez jamais vu...</h1>

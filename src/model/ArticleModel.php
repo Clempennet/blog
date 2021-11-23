@@ -4,10 +4,10 @@ namespace App\model;
 class ArticleModel
 {
     private int $id;
-    private \DateTime $date;
-    private String $titre;
-    private String $contenu;
-    private String $auteur;
+    private string $date;
+    private string $titre;
+    private string $contenu;
+    private string $auteur;
     private bool $etat;
 /*
     public function __construct(int $id, \DateTime $date, String $titre, String $contenu, String $auteur, bool $etat)
@@ -31,12 +31,12 @@ class ArticleModel
         return $this;
     }
     
-    public function getDate() : \DateTime
+    public function getDate() : string
     {
         return $this->date;
     }
 
-    public function setDate(\DateTime $date) : self
+    public function setDate(string $date) : self
     {
         $this->date = $date;
         return $this;

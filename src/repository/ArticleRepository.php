@@ -42,19 +42,25 @@ class ArticleRepository extends Database
         return ($prep->fetch())['nb'];
     }
 
-    public function getAll() : ArrayObject
+    public function getAll() : array
     {
         $prep = $this->connection->prepare("SELECT * FROM articles");
         $prep->execute();
         $result= $prep->fetchAll(\PDO::FETCH_ASSOC);
-        $res=new ArrayObject();
+        $res=array();
         foreach($result as $row) {
-            $res->append($this->buildObject($row));
+           array_push($res, ($this->buildObject($row)));
         }
         return $res;
     }
 
-    public function buildObject($row) {
+    public function getById(int $id) : ArticleModel {
+        $sql = 'SELECT * FROM articles WHERE article_id=:id';
+        $result = $this->createQuery($sql, [':id' => $id]);
+        return $this->buildObject($result->fetch());
+    }
+
+    public function buildObject($row) : ArticleModel {
         $article = new ArticleModel();
         $article->setId($row['article_id']);
         $article->setDate($row['article_date']);
@@ -63,6 +69,6 @@ class ArticleRepository extends Database
         $article->setAuteur($row['article_auteur']);
         $article->setEtat($row['article_etat']);
 
-        //Etc
+        return $article;
     }
 }

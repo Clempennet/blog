@@ -1,8 +1,15 @@
+
+
 <?php
 
 
-require 'inc/entete.php';
-require 'inc/db.php';
+require 'src/inc/entete.php';
+?>
+
+<h1>CA MARCHE ARTICLE : <?php echo $_GET['id']?>. JE TE LAISSE FAIRE LA SUITE</h1>
+
+<?php
+
 
 #Récupération de l'id de l'article recherché dans l'url + néttoyage pour vérification en db
 (int)$article_id = mysqli_escape_string($connect, $_GET['id']);
