@@ -4,19 +4,20 @@ namespace App\repository;
 
 use App\inc\Database;
 use App\model\ArticleModel;
+use ArrayObject;
 
-class ArticleRepository
+class ArticleRepository extends Database
 {
     private $connection;
 
     public function __construct()
     {
-        $this->connection = (new Database())->getConnection();
+        $this->connection = $this->getConnection();
     }
 
     public function createArticle(ArticleModel $article) {
-        $prep = $this->connection->prepare('INSERT INTO articles VALUES (:id, :date, :titre, :contenu, :auteur, :etat)');
-        $prep->execute([
+        $sql = 'INSERT INTO articles VALUES (:id, :date, :titre, :contenu, :auteur, :etat)';
+        $result = $this->createQuery($sql, [
             ':id' => $article->getId(),
             ':title' => $article->getDate(),
             ':content' => $article->getTitre(),
@@ -24,7 +25,7 @@ class ArticleRepository
             'updatedAt' => $article->getAuteur(),
             'deletedAt' => $article->getEtat(),
         ]);
-        return (bool) $prep->rowCount();
+        return (bool) $result->rowCount();
     }
 
     public function getLast3() : array
@@ -39,5 +40,29 @@ class ArticleRepository
         $prep = $this->connection->prepare("SELECT count(*) AS 'nb' FROM articles WHERE article_etat = 1");
         $prep->execute();
         return ($prep->fetch())['nb'];
+    }
+
+    public function getAll() : ArrayObject
+    {
+        $prep = $this->connection->prepare("SELECT * FROM articles");
+        $prep->execute();
+        $result= $prep->fetchAll(\PDO::FETCH_ASSOC);
+        $res=new ArrayObject();
+        foreach($result as $row) {
+            $res->append($this->buildObject($row));
+        }
+        return $res;
+    }
+
+    public function buildObject($row) {
+        $article = new ArticleModel();
+        $article->setId($row['article_id']);
+        $article->setDate($row['article_date']);
+        $article->setTitre($row['article_titre']);
+        $article->setContenu($row['article_contenu']);
+        $article->setAuteur($row['article_auteur']);
+        $article->setEtat($row['article_etat']);
+
+        //Etc
     }
 }

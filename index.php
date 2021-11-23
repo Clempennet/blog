@@ -2,12 +2,13 @@
 
 require 'vendor/autoload.php';
 
+use App\model\ArticleModel;
 use App\repository\ArticleRepository;
 
 require 'src/inc/entete.php';
 
 $m = new ArticleRepository();
-var_dump($m->getNumberArticles());
+
 ?>
 
 <h1>Découvez un blog comme vous n'en avez jamais vu...</h1>
@@ -18,10 +19,12 @@ var_dump($m->getNumberArticles());
 
 <h3>Les 3 derniers articles :</h3>
 <ul>
-	<?php #Avec cette boucle on affiche 1 à 1 les articles sous la forme d'une liste où les éléments sont cliquables et renvoient vers les articles ?>
-	<?php while($article = $req_3_derniers_articles->fetch_object()): ?>
-		<li><a href="article.php?id=<?php echo $article->article_id; ?>"><?php echo $article->article_titre; ?></a></li>
-	<?php endwhile; ?>
+	<?php #Avec cette boucle on affiche 1 à 1 les articles sous la forme d'une liste où les éléments sont cliquables et renvoient vers les articles
+	foreach($articles = $m->getLast3() as $article) {?>
+		<li><a href="article.php?id=<?php echo $article["article_id"];?>"><?php echo $article["article_titre"]; ?></a></li>
+	<?php
+	}
+	?>
 </ul>
 
 <hr>
@@ -39,6 +42,6 @@ var_dump($m->getNumberArticles());
 
 <?php 
 
-require 'inc/pied_page.php';
+require 'src/inc/pied_page.php';
 
 ?>

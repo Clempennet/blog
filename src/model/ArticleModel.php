@@ -9,8 +9,7 @@ class ArticleModel
     private String $contenu;
     private String $auteur;
     private bool $etat;
-
-
+/*
     public function __construct(int $id, \DateTime $date, String $titre, String $contenu, String $auteur, bool $etat)
     {
         $this->id = $id;
@@ -20,10 +19,16 @@ class ArticleModel
         $this->auteur = $auteur;
         $this->etat = $etat;
     }
-
+*/
     public function getId(): int
     {
         return $this->id;
+    }
+
+    public function setId(int $id) : self 
+    {
+        $this->id=$id;
+        return $this;
     }
     
     public function getDate() : \DateTime

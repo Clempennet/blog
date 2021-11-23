@@ -1,4 +1,3 @@
-<?php namespace App\inc;?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -45,7 +44,7 @@
                             <a class="nav-link" aria-current="page" href="index.php">Accueil</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="articles.php">Articles</a>
+                            <a class="nav-link" aria-current="page" href="../../articles.php">Articles</a>
                         </li>
                     </ul>
                     <!-- <form class="d-flex">
